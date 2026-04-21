@@ -1,57 +1,57 @@
-<h1 align="center">Chinese-to-Braille Translation Model Based on Pretrained Language Models and Mixture of Experts Networks</h1>
+<h1 align="center">基于预训练语言模型与混合专家网络的中文到盲文翻译模型</h1>
 </h1>
 
 <p align="center">
-Dapeng Chen, Zhou Zhuang, Lianshun Shen, Chenkai Li, Lina Wei, Jia Liu<br>
-Nanjing University of Information Science and Technology
+陈大鹏，庄舟，申连顺，李晨凯 <br>
+南京信息工程大学
 </p>
 
 ---
-<h2 align="center">ABSTRACT</h2>
-Braille is the primary medium with the blind or visually impaired (BVI) access information, and accurate conversion between Braille and Chinese text is a key technological component in advancing information accessibility. However, traditional translation methods exhibit significant limitations in handling polyphonic character disambiguation and complex word segmentation rules in Chinese, making it difficult to meet the requirements for high accuracy and robustness in real-world applications. To address this challenge, this paper proposes a Chinese-to-Braille translation architecture that integrates a pretrained language model with a Mixture of Experts (MoE) network. The proposed approach adopts an end-to-end encoder–decoder framework, in which the encoder leverages BERT to obtain rich deep semantic representations and incorporates a MoE mechanism to enable specialized modeling of diverse linguistic phenomena, thereby enhancing the model’s adaptability in complex semantic scenarios.To evaluate the performance of the proposed model, we construct a large-scale Chinese–Braille parallel corpus covering multiple domains, including news, literature, and daily communication. Experimental results demonstrate that the proposed Chinese-to-Braille translation model integrating a pretrained language model and a MoE achieves a BLEU score of 98.15% on the test set, significantly outperforming traditional rule-based methods as well as various neural network baseline models. Further ablation studies indicate that both the BERT-based semantic representations and the MoE mechanism play critical roles in improving translation performance. In addition, qualitative feedback obtained through user studies suggests that the proposed approach effectively enhances reading fluency and content comprehension for BVI.
+<h2 align="center">摘  要</h2>
+盲文作为视障群体获取信息的核心媒介，其与中文文本之间的精准转换是推动信息无障碍建设的关键技术环节。然而，传统翻译方法在处理中文多音字消歧与复杂分词规则时存在显著局限，难以满足实际应用中对高精度与高鲁棒性的需求。针对这一问题，提出了一种融合预训练语言模型与混合专家网络的中文到盲文翻译架构。该方法构建了端到端的编码器-解码器模型，其中编码器利用BERT获取丰富的深层语义表示，并引入混合专家网络机制以实现对不同语言现象的专家化建模，从而增强模型在复杂语义场景下的适应能力。为评估模型性能，构建了涵盖新闻、文学、日常交流等多领域的大规模中文-盲文平行语料库。实验结果显示，所提出的融合预训练语言模型与混合专家网络的中文到盲文翻译模型在测试集上取得了98.15%的BLEU分数，显著超越传统规则方法以及各类神经网络基线模型。进一步的消融实验表明，BERT语义表示与混合专家网络机制在提升翻译性能方面均发挥了关键作用。此外，通过用户研究获取的定性反馈表明，该方法能够有效提升视障用户的阅读流畅度与内容理解体验。
 
-## Introduction
-BrailleTrans is an innovative Chinese-to-Braille translation system that integrates pre-trained language models with a mixture of experts network to achieve high-precision Chinese Braille conversion.
+## 引言
+BrailleTrans 是一种创新的中文到盲文翻译系统，它将预训练语言模型与混合专家网络相结合，以实现高精度的中文盲文转换。
 
-The model framework is shown in the figure:
+模型框架如图所示：
 
 ![image](https://github.com/shen874/mwfy/raw/main/Framework.jpg)
 
-## Quick Start
-### Conda Environment of BrailleTrans
+## 快速入门
+### BrailleTrans 的 Conda 环境
 ```bash
 # Create and activate conda environment
 conda create -n BrailleTrans python=3.10.18 -y
 conda activate BrailleTrans
 ```
 
-### Clone Project
+### 克隆项目
 ```bash
 git clone https://github.com/CdpLab/BrailleTrans.git 
 cd BrailleTrans
 ```
 
-### Install Dependencies
+### 安装依赖
 ```bash
 pip install -r requirements.txt
 pip install torch==2.8.0 torchaudio==2.1.0
 ```
-We use the `bert-base-chinese` architecture. Since the file is large, please download it from [here](https://huggingface.co/google-bert/bert-base-chinese). Then put it in the `/down` folder. The file structure is:
+我们使用 `bert-base-chinese` 架构。由于该文件较大，请从[此处](https://huggingface.co/google-bert/bert-base-chinese)下载。然后将其放入 `/down` 文件夹中。文件结构如下：
 ```
 ·
 ├── down
 ·   ├── configs
     └── bert-base-chinese
 ```
-### Data Preparation
-The dataset is placed in the `/data` directory.
+### 数据准备
+数据集放置在 `/data` 目录中。
 ```
 ·
 ├── data
 ·  
 ```
-## Training
-Use the following command to start training your BrailleTrans model:
+## 训练
+使用以下命令开始训练你的 BrailleTrans 模型：
 ```
 ├── src
 ·   ├── train.py
@@ -62,7 +62,7 @@ python src/train.py \
 --epochs 10 \
 --batch_size 32
 ```
-## Result
+## 结果
 <table>
   <tr>
    <td><strong>Model</strong></td>  <td><strong>Train Loss</strong></td>
